@@ -4,7 +4,7 @@ require "logger"
 log = Logger.new "log.txt"
 
 lines = File.readlines "./shares.txt"
-shares = lines.map(&:strip).reject{|l| l[0] == "#"}
+shares = lines.map(&:strip).reject{|l| l[0] == "#"}.reject(&:empty?)
 
 shares.each do |share|
   files = Dir.glob share
